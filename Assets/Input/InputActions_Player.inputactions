@@ -1,0 +1,34 @@
+{
+    "name": "InputActions_Player",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "f71566ad-6757-42dc-86c6-2de9e638e0e3",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "7d4240ab-56d8-4006-99e8-4cb922dbdf45",
+                    "expectedControlType": "Delta",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "68170405-2251-443b-865f-3a62fced02e1",
+                    "path": "<Touchscreen>/delta",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
