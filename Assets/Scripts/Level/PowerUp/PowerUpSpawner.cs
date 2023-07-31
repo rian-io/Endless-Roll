@@ -4,24 +4,26 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class PowerUpSpawner
+public class PowerUpSpawner : MonoBehaviour
 {
-    private float _powerUpSpawnStep = 100f;
+    [SerializeField] private List<PowerUp> _powerUpsList;
 
-    private GameObject _powerUpsContainer;
+    [SerializeField] private float _powerUpInitialPosition = 52.5f;
 
-    private List<PowerUp> _powerUpsList;
+    [SerializeField] private float _powerUpSpawnStep = 100f;
 
     [ThreadStatic] private static System.Random _local;
 
-    public PowerUpSpawner(GameObject powerUpsContainer, List<PowerUp> powerUpsList)
+    public void SpawnFirst(float endPoint)
     {
-        this._powerUpsContainer = powerUpsContainer;
-        this._powerUpsList = powerUpsList;
+        Spawn(0, endPoint);
     }
 
     public void Spawn(float startPoint, float endPoint)
     {
+        startPoint += _powerUpInitialPosition;
+        endPoint -= _powerUpInitialPosition;
+
         while (startPoint <= endPoint)
         {
             shuffle();
@@ -30,7 +32,7 @@ public class PowerUpSpawner
 
             foreach (var prefab in _powerUpsList)
             {
-                PowerUp powerUp = MonoBehaviour.Instantiate(prefab, _powerUpsContainer.transform, false);
+                PowerUp powerUp = Instantiate(prefab, this.transform, false);
                 powerUp.gameObject.transform.localPosition = new Vector3(xPosition, 0f, startPoint);
 
                 xPosition += 2f;
