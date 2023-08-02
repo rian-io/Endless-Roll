@@ -5,13 +5,34 @@ using TMPro;
 
 public class HUDController : MonoBehaviour
 {
-    [Header("HUD Data")]
-    [SerializeField] HUDData hudData;
-
     [SerializeField] TMP_Text angleText;
 
-    private void Update()
+    [SerializeField] TMP_Text distanceText;
+
+    private void OnEnable()
     {
-        angleText.text = hudData.getLevelAngle();
+        HUDData.OnUpdateLevelAngle += updateLevelAngle;
+        HUDData.OnUpdateLevelDistance += updateLevelDistance;
+    }
+
+    private void OnDisable()
+    {
+        HUDData.OnUpdateLevelAngle -= updateLevelAngle;
+        HUDData.OnUpdateLevelDistance -= updateLevelDistance;
+    }
+
+    private void updateLevelAngle(float angle)
+    {
+        angleText.text = convertFloatToString(angle);
+    }
+
+    private void updateLevelDistance(float distance)
+    {
+        distanceText.text = convertFloatToString(distance);
+    }
+
+    private string convertFloatToString(float value)
+    {
+        return value.ToString("0.0");
     }
 }
