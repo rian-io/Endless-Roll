@@ -22,11 +22,11 @@ public class PowerUpSpawner : MonoBehaviour
     public void Spawn(float startPoint, float endPoint)
     {
         startPoint += _powerUpInitialPosition;
-        endPoint -= _powerUpInitialPosition;
+        //endPoint -= _powerUpInitialPosition;
 
         while (startPoint <= endPoint)
         {
-            shuffle();
+            _powerUpsList.Shuffle();
 
             float xPosition = -2f;
 
@@ -41,23 +41,4 @@ public class PowerUpSpawner : MonoBehaviour
             startPoint += _powerUpSpawnStep;
         }
     }
-
-    private System.Random generateRandom()
-    {
-        return _local ?? (_local = new System.Random(unchecked(Environment.TickCount * 31 + Thread.CurrentThread.ManagedThreadId)));
-    }
-
-    private void shuffle()
-    {
-        int n = _powerUpsList.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = generateRandom().Next(n + 1);
-            PowerUp value = _powerUpsList[k];
-            _powerUpsList[k] = _powerUpsList[n];
-            _powerUpsList[n] = value;
-        }
-    }
-
 }
