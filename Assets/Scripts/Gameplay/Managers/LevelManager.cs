@@ -32,7 +32,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Update()
     {
-        hudData.setLevelAngle(transform.localEulerAngles.x);
+        hudData.SetLevelAngle(transform.eulerAngles.x);
     }
 
     private void OnEnable()
@@ -43,18 +43,6 @@ public class LevelManager : Singleton<LevelManager>
     private void OnDisable()
     {
         Player.OnPlayerDies -= Terminate;
-    }
-
-    public void DecreaseInclination(float angleDecrease, float duration)
-    {
-        Terminate();
-        StartCoroutine(DecreaseLevelInclination(5f, duration));
-    }
-
-    public void StopInclination(float duration)
-    {
-        Terminate();
-        StartCoroutine(StopLevelInclination(duration));
     }
 
     private void StartRotateMecanism()
@@ -68,6 +56,18 @@ public class LevelManager : Singleton<LevelManager>
         StopAllCoroutines();
     }
 
+    public void DecreaseInclination(float angles, float duration)
+    {
+        Terminate();
+        StartCoroutine(DecreaseLevelInclination(angles, duration));
+    }
+
+    public void StopInclination(float duration)
+    {
+        Terminate();
+        StartCoroutine(StopLevelInclination(duration));
+    }
+
     private IEnumerator IncreaseLevelInclination()
     {
         if (!DOTween.IsTweening(transform))
@@ -75,11 +75,11 @@ public class LevelManager : Singleton<LevelManager>
                 new Vector3(_finalInclination, 0f, 0f), _totalAnimationTime).WaitForCompletion();
     }
 
-    private IEnumerator DecreaseLevelInclination(float angleVariation, float duration)
+    private IEnumerator DecreaseLevelInclination(float angles, float duration)
     {
         if (!DOTween.IsTweening(transform))
         {
-            float newAngle = gameObject.transform.localEulerAngles.x - angleVariation;
+            float newAngle = gameObject.transform.localEulerAngles.x - angles;
             if (newAngle < 0f) newAngle = 0;
 
             yield return transform.DORotate(new Vector3(newAngle, 0f, 0f), duration).WaitForCompletion();

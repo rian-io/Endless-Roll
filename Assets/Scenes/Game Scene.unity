@@ -315,7 +315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 45.0
+  m_text: 0.0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 45.0
+  m_text: 0.0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1795,8 +1795,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a4e26c578484f96b36b367983500ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudData: {fileID: 11400000, guid: 342e090eecdc8499186882728dc5e9d8, type: 2}
   angleText: {fileID: 200413288}
+  distanceText: {fileID: 1772729944}
 --- !u!4 &1863127718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2711708597948570112, guid: 9c91e05ec5ad34f41ad867c91fb159a8,
