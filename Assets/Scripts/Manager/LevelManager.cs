@@ -19,13 +19,20 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField, Tooltip("The time to reach the final inclination.")]
     private float _totalAnimationTime = 60f;
 
-    #region Unity messages
+    [Header("HUD Data")]
+    [SerializeField] HUDData hudData;
+
     private void Start()
     {
         transform.DORotate(
             new Vector3(_initialInclination, 0f, 0f),
             _initialTimeDuration
         ).onComplete = StartRotateMecanism;
+    }
+
+    private void Update()
+    {
+        hudData.setLevelAngle(transform.localEulerAngles.x);
     }
 
     private void OnEnable()
@@ -37,9 +44,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         Player.OnPlayerDies -= Terminate;
     }
-    #endregion
 
-    #region Public Methods
     public void DecreaseInclination(float angleDecrease, float duration)
     {
         Terminate();
@@ -51,9 +56,7 @@ public class LevelManager : Singleton<LevelManager>
         Terminate();
         StartCoroutine(StopLevelInclination(duration));
     }
-    #endregion
 
-    #region Private Methods
     private void StartRotateMecanism()
     {
         StartCoroutine(IncreaseLevelInclination());
@@ -64,9 +67,7 @@ public class LevelManager : Singleton<LevelManager>
         DOTween.Clear();
         StopAllCoroutines();
     }
-    #endregion
 
-    #region Coroutines
     private IEnumerator IncreaseLevelInclination()
     {
         if (!DOTween.IsTweening(transform))
@@ -91,5 +92,4 @@ public class LevelManager : Singleton<LevelManager>
         yield return new WaitForSeconds(duration);
         StartRotateMecanism();
     }
-    #endregion
 }

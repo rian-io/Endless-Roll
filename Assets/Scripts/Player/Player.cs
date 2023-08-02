@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Renderer _renderer;
 
-    [SerializeField]
     private bool _isIndestructible;
 
     private void OnTriggerEnter(Collider other)
