@@ -14,15 +14,9 @@ public class PowerUpSpawner : MonoBehaviour
 
     [ThreadStatic] private static System.Random _local;
 
-    public void SpawnFirst(float endPoint)
-    {
-        Spawn(0, endPoint);
-    }
-
     public void Spawn(float startPoint, float endPoint)
     {
         startPoint += _powerUpInitialPosition;
-        //endPoint -= _powerUpInitialPosition;
 
         while (startPoint <= endPoint)
         {
