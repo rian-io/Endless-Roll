@@ -22,8 +22,8 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         _enviromentZPosition = _environment.transform.position.z;
 
-        _obstacleSpawner.Spawn(_enviromentZPosition, _environmentLength);
-        _powerUpSpawner.SpawnFirst(_environmentLength);
+        _obstacleSpawner.Spawn(0, _environmentLength);
+        _powerUpSpawner.Spawn(0, _environmentLength);
     }
 
     private void OnEnable()
