@@ -15,29 +15,34 @@ public class GameManager : Singleton<GameManager>
 
     private void OnEnable()
     {
-        MainMenu.OnNewGame += onStartGame;
-        Player.OnPlayerDies += onGameOver;
+        MainMenu.OnNewGame += OnStartGame;
+        HUDController.OnPauseAction += OnPause;
+
+        Player.OnPlayerDies += OnGameOver;
     }
 
     private void OnDisable()
     {
-        MainMenu.OnNewGame -= onStartGame;
-        Player.OnPlayerDies -= onGameOver;
+        MainMenu.OnNewGame -= OnStartGame;
+        HUDController.OnPauseAction -= OnPause;
+
+        Player.OnPlayerDies -= OnGameOver;
     }
 
-    private void onStartGame()
+    private void OnStartGame()
     {
         Debug.Log("Game State = PLAYING");
         SceneManager.LoadScene(_gameSceneIndex);
     }
 
-    private void onPaused(bool paused)
+    private void OnPause(bool paused)
     {
-        Debug.Log("Game State = PAUSE");
+        string state = paused ? "PAUSE" : "PLAYING";
+        Debug.Log("Game State = " + state);
         Time.timeScale = paused ? 0f : 1f;
     }
 
-    private void onGameOver()
+    private void OnGameOver()
     {
         Debug.Log("Game State = GAME OVER");
         SceneManager.LoadScene(_titleSceneIndex);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,33 +6,48 @@ using TMPro;
 
 public class HUDController : MonoBehaviour
 {
-    [SerializeField] TMP_Text angleText;
+    public static event Action<bool> OnPauseAction;
 
-    [SerializeField] TMP_Text distanceText;
+    [SerializeField] private TMP_Text angleText;
+
+    [SerializeField] private TMP_Text distanceText;
+
+    private bool _isPaused;
+
+    private void Awake()
+    {
+        _isPaused = false;
+    }
 
     private void OnEnable()
     {
-        HUDData.OnUpdateLevelAngle += updateLevelAngle;
-        HUDData.OnUpdateLevelDistance += updateLevelDistance;
+        HUDData.OnUpdateLevelAngle += UpdateLevelAngle;
+        HUDData.OnUpdateLevelDistance += UpdateLevelDistance;
     }
 
     private void OnDisable()
     {
-        HUDData.OnUpdateLevelAngle -= updateLevelAngle;
-        HUDData.OnUpdateLevelDistance -= updateLevelDistance;
+        HUDData.OnUpdateLevelAngle -= UpdateLevelAngle;
+        HUDData.OnUpdateLevelDistance -= UpdateLevelDistance;
     }
 
-    private void updateLevelAngle(float angle)
+    public void OnPause()
     {
-        angleText.text = convertFloatToString(angle);
+        _isPaused = !_isPaused;
+        OnPauseAction?.Invoke(_isPaused);
     }
 
-    private void updateLevelDistance(float distance)
+    private void UpdateLevelAngle(float angle)
     {
-        distanceText.text = convertFloatToString(distance);
+        angleText.text = ConvertFloatToString(angle);
     }
 
-    private string convertFloatToString(float value)
+    private void UpdateLevelDistance(float distance)
+    {
+        distanceText.text = ConvertFloatToString(distance);
+    }
+
+    private string ConvertFloatToString(float value)
     {
         return value.ToString("0.0");
     }
