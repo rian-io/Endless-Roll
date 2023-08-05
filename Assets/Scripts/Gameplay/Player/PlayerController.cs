@@ -18,6 +18,6 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         float x = context.ReadValue<Vector2>().x * _forceModifier;
-        _rigidBody.AddForce(new Vector3(x, 0f, 0f));
+        _rigidBody.AddForce(new Vector3(x, -1f, 0f));
     }
 }
