@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager>
     private void OnEnable()
     {
         MainMenu.OnNewGame += OnStartGame;
-        HUDController.OnPauseAction += OnPause;
+        UIController.OnPauseAction += OnPause;
 
         Player.OnPlayerDies += OnGameOver;
     }
@@ -24,7 +24,7 @@ public class GameManager : Singleton<GameManager>
     private void OnDisable()
     {
         MainMenu.OnNewGame -= OnStartGame;
-        HUDController.OnPauseAction -= OnPause;
+        UIController.OnPauseAction -= OnPause;
 
         Player.OnPlayerDies -= OnGameOver;
     }

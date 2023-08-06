@@ -4,13 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class HUDController : MonoBehaviour
+public class UIController : MonoBehaviour
 {
     public static event Action<bool> OnPauseAction;
+
+    [SerializeField] private GameObject _HUD;
 
     [SerializeField] private TMP_Text angleText;
 
     [SerializeField] private TMP_Text distanceText;
+
+    [Space]
+
+    [SerializeField] private GameObject _pauseMenu;
 
     private bool _isPaused;
 
@@ -35,6 +41,9 @@ public class HUDController : MonoBehaviour
     {
         _isPaused = !_isPaused;
         OnPauseAction?.Invoke(_isPaused);
+
+        _HUD.SetActive(!_isPaused);
+        _pauseMenu.SetActive(_isPaused);
     }
 
     private void UpdateLevelAngle(float angle)
