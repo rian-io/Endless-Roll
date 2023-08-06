@@ -16,17 +16,19 @@ public class GameManager : Singleton<GameManager>
     private void OnEnable()
     {
         MainMenu.OnNewGame += OnStartGame;
-        UIController.OnPauseAction += OnPause;
+        UIController.OnPause += OnPause;
+        UIController.OnExitToMainMenu += OnExitToMainMenu;
 
-        Player.OnPlayerDies += OnGameOver;
+        Player.OnPlayerDies += OnExitToMainMenu;
     }
 
     private void OnDisable()
     {
         MainMenu.OnNewGame -= OnStartGame;
-        UIController.OnPauseAction -= OnPause;
+        UIController.OnPause -= OnPause;
+        UIController.OnExitToMainMenu -= OnExitToMainMenu;
 
-        Player.OnPlayerDies -= OnGameOver;
+        Player.OnPlayerDies -= OnExitToMainMenu;
     }
 
     private void OnStartGame()
@@ -42,9 +44,11 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = paused ? 0f : 1f;
     }
 
-    private void OnGameOver()
+    private void OnExitToMainMenu()
     {
-        Debug.Log("Game State = GAME OVER");
+        Debug.Log("Game State = MAIN MENU");
+        OnPause(false); // Set the time scale to 1.
+
         SceneManager.LoadScene(_titleSceneIndex);
     }
 }

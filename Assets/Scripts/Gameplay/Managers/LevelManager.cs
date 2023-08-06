@@ -43,18 +43,7 @@ public class LevelManager : Singleton<LevelManager>
     private void OnDisable()
     {
         Player.OnPlayerDies -= Terminate;
-    }
-
-    private void StartRotateMecanism()
-    {
-        StartCoroutine(IncreaseLevelInclination());
-    }
-
-    private void Terminate()
-    {
-        DOTween.Clear();
-        StopAllCoroutines();
-    }
+    }    
 
     public void DecreaseInclination(float angles, float duration)
     {
@@ -66,6 +55,17 @@ public class LevelManager : Singleton<LevelManager>
     {
         Terminate();
         StartCoroutine(StopLevelInclination(duration));
+    }
+
+    private void StartRotateMecanism()
+    {
+        StartCoroutine(IncreaseLevelInclination());
+    }
+
+    private void Terminate()
+    {
+        DOTween.Clear();
+        StopAllCoroutines();
     }
 
     private IEnumerator IncreaseLevelInclination()
