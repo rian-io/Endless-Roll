@@ -16,19 +16,19 @@ public class GameManager : Singleton<GameManager>
     private void OnEnable()
     {
         MainMenu.OnNewGame += OnStartGame;
+
         UIController.OnPause += OnPause;
         UIController.OnExitToMainMenu += OnExitToMainMenu;
-
-        Player.OnPlayerDies += OnExitToMainMenu;
+        UIController.OnRestartGameAction += OnStartGame;
     }
 
     private void OnDisable()
     {
         MainMenu.OnNewGame -= OnStartGame;
+
         UIController.OnPause -= OnPause;
         UIController.OnExitToMainMenu -= OnExitToMainMenu;
-
-        Player.OnPlayerDies -= OnExitToMainMenu;
+        UIController.OnRestartGameAction -= OnStartGame;
     }
 
     private void OnStartGame()
