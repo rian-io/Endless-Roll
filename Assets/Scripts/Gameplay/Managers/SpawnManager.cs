@@ -28,12 +28,12 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private void OnEnable()
     {
-        ReplaceNotifier.OnSpawnerActivate += ReplaceEnvironmentHandler;
+        ReplacementNotifier.OnSpawnerActivate += ReplaceEnvironmentHandler;
     }
 
     private void OnDisable()
     {
-        ReplaceNotifier.OnSpawnerActivate -= ReplaceEnvironmentHandler;
+        ReplacementNotifier.OnSpawnerActivate -= ReplaceEnvironmentHandler;
     }
 
     private void ReplaceEnvironmentHandler()

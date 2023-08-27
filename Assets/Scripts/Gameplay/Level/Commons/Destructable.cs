@@ -20,19 +20,4 @@ public class Destructable : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    private void OnEnable()
-    {
-        Player.OnPlayerDies += Destroy;
-    }
-
-    private void OnDisable()
-    {
-        Player.OnPlayerDies -= Destroy;
-    }
-
-    protected void Destroy()
-    {
-        Destroy(gameObject);
-    }
 }

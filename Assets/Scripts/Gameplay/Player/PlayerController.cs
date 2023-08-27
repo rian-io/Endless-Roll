@@ -20,11 +20,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        Player.OnPlayerDies += StopPlayer;
         UIController.OnPause += OnPause;
     }
 
     private void OnDisable()
     {
+        Player.OnPlayerDies -= StopPlayer;
         UIController.OnPause -= OnPause;
     }
 
@@ -37,5 +39,15 @@ public class PlayerController : MonoBehaviour
     private void OnPause(bool paused)
     {
         _playerInput.enabled = !paused;
+    }
+
+    private void StopPlayer()
+    {
+        _playerInput.DeactivateInput();
+
+        _rigidBody.velocity = Vector3.zero;
+        _rigidBody.angularVelocity = Vector3.zero;
+
+        _rigidBody.useGravity = false;
     }
 }

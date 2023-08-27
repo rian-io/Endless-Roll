@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReplaceNotifier : MonoBehaviour
+public class ReplacementNotifier : MonoBehaviour
 {
     public static event Action OnSpawnerActivate;
 

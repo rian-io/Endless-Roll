@@ -19,16 +19,14 @@ public class Player : MonoBehaviour
     {
         if (_isIndestructible && other.gameObject.CompareTag(TagSystem.OBSTACLE))
         {
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<ParticleHandler>().Play();
             return;
         }
 
         if (other.gameObject.CompareTag(TagSystem.OBSTACLE) ||
             other.gameObject.CompareTag(TagSystem.LEVEL_LIMIT))
         {
-            Destroy(gameObject);
             StopAllCoroutines();
-            // TODO start game over particles in every object listener.
             OnPlayerDies?.Invoke();
         }
     }
