@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPositionReader : MonoBehaviour
@@ -18,7 +16,7 @@ public class PlayerPositionReader : MonoBehaviour
         float a = transform.localPosition.z;
         float b = transform.localPosition.y;
 
-        return (Mathf.Sqrt(Mathf.Pow(a, 2) + Mathf.Pow(b, 2)));
+        return Mathf.Sqrt(Mathf.Pow(a, 2) + Mathf.Pow(b, 2));
     }
 
     private float ConvertToMeters(float distance)

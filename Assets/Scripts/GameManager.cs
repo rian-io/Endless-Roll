@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    private int _titleSceneIndex = 0;
-    private int _gameSceneIndex = 1;
+    private readonly int _titleSceneIndex = 0;
+    private readonly int _gameSceneIndex = 1;
 
     private void Start()
     {

@@ -6,7 +6,7 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] private float _length;
 
-    private float _groudnWidth = 2.5f;
+    private readonly float _groudnWidth = 2.5f;
 
     public float GetPositiveXLimit()
     {
